@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  font-size: 35px;
+}
+
+img {
+  width: 250px;
+  border-radius: 20px;
+  margin: 15px 0;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background-color: white;
+  color: #ff4d6d;
+}
+
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Would you like to go eat cheese with me? 💕</h1>
+
+<!-- Ảnh ở đây -->
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm81eTB5aDQzNTRjOXZ3eGNtdzZ3bmllY3FjdTd3bzRrdjV5ODhhaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kswZdQQQV7pAc/giphy.gif">
+
+<div>
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 😢</button>
+</div>
+
+<!-- Nhạc nền -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
+
+// Nút No chạy trốn
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+// Khi bấm Yes
+yesBtn.addEventListener("click", () => {
+  document.body.innerHTML = `
+    <h1 style="color:white;">Yayyyy 💖💖💖</h1>
+  `;
+  music.play();
+  createHearts();
+});
+
+// Tim rơi
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }, 200);
+}
+</script>
+
+</body>
+</html>
